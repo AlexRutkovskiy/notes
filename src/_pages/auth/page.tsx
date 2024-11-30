@@ -71,7 +71,9 @@ export const AuthPage = () => {
           />
         </FormRow>
         <FormRow>
-          <Button fullWidth type="submit">Submit</Button>
+          <Button fullWidth type="submit">
+            {CONTENT.LABELS.SUBMIT}
+          </Button>
         </FormRow>
         <FormRow>
           <ToggleFormType

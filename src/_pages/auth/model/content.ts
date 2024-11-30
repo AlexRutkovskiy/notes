@@ -17,5 +17,6 @@ export const CONTENT = {
     FULL_NAME: 'Full Name',
     EMAIL: 'Email',
     PASSWORD: 'Password',
+    SUBMIT: 'Submit'
   }
 }
