@@ -29,5 +29,5 @@ export const Title = ({
   ...rest
 }: TitleProps) => {
   const Component = tag;
-  return <Component className={`${style[tag]} ${pos[position]}`} {...rest}>{children}</Component>
+  return <Component className={`${style[tag]} ${pos[position]} text-gray-700`} {...rest}>{children}</Component>
 }
