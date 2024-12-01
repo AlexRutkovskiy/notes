@@ -18,8 +18,11 @@ export const AuthPage = () => {
   const [activeTab, setActiveTab] = useState<TabType>(TAB.LOGIN)
   const [formState, setFormState ] = useState<FORM_STATE>(DEFAULT_FORM_STATE)
   const [errors, setErrors] = useState<FORM_ERROR>({})
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const toggleForm = useCallback(() => {
+    if (isLoading) return;
+
     setActiveTab(prev => {
       if (prev === TAB.REGISTER) return TAB.LOGIN;
       return TAB.REGISTER;
@@ -42,6 +45,7 @@ export const AuthPage = () => {
       return;
     }
 
+    setIsLoading(true)
   }, [activeTab])
 
   return (
@@ -62,6 +66,7 @@ export const AuthPage = () => {
               value={formState[FIELD_NAMES.FULL_NAME]}
               onChange={handleChange}
               errors={errors[FIELD_NAMES.FULL_NAME]}
+              disabled={isLoading}
             />
           </FormRow>
         )}
@@ -72,6 +77,7 @@ export const AuthPage = () => {
             value={formState[FIELD_NAMES.EMAIL]}
             onChange={handleChange}
             errors={errors[FIELD_NAMES.EMAIL]}
+            disabled={isLoading}
             type='email'
           />
         </FormRow>
@@ -82,11 +88,12 @@ export const AuthPage = () => {
             value={formState[FIELD_NAMES.PASSWORD]}
             onChange={handleChange}
             errors={errors[FIELD_NAMES.PASSWORD]}
+            disabled={isLoading}
             type='password'
           />
         </FormRow>
         <FormRow>
-          <Button fullWidth type="submit">
+          <Button fullWidth type="submit" disabled={isLoading}>
             {CONTENT.LABELS.SUBMIT}
           </Button>
         </FormRow>
