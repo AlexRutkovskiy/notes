@@ -1,7 +1,7 @@
+import { BaseInput } from './BaseInput';
 import { Input } from './Input';
-import { InputWithLabel } from './InputWithLabel';
 
 export {
-  Input,
-  InputWithLabel
+  BaseInput,
+  Input
 };

@@ -1,30 +1,31 @@
 'use client'
 
-import { InputHTMLAttributes } from 'react';
-import clsx from 'clsx';
+import { BaseInput, type InputProps } from './BaseInput';
 
-export type InputProps = {
-  name: string;
-  id?: string;
-} & InputHTMLAttributes<HTMLInputElement>;
+type InputWithLabelProps = InputProps & {
+  label: string,
+  errors?: undefined | string[];
+}
 
 export const Input = ({
+  label,
   name,
-  id,
-  disabled,
+  errors,
   ...rest
-}: InputProps) => {
+}: InputWithLabelProps) => {
   return (
-    <input
-      className={clsx(`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight 
-        focus:outline-blue-700 min-h-[42px]`,
-        disabled && 'text-gray-400 focus:outline-none',
-      )}
-      disabled={disabled}
-      name={name}
-      id={id}
-      autoComplete='off'
-      {...rest}
-    />
+    <label>
+      <span className='block text-gray-700 text-sm font-bold mb-2'>
+        {label}
+      </span>
+      <BaseInput name={name} error={!!errors} {...rest} />
+      {errors?.map(error => {
+        return (
+          <span className='block text-red-600 text-xs mt-1' key={error}>
+            {error}
+          </span>
+        );
+      })}
+    </label>
   )
 }

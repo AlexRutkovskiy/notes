@@ -1,5 +1,5 @@
-import { TabType } from '@/_pages/auth/model/types';
-import { TAB } from '@/_pages/auth/model/constans';
+import { TabType } from '@/shared/model/auth/types';
+import { TAB } from '@/shared/model/auth/constans';
 
 import { CONTENT } from '../model/content'
 

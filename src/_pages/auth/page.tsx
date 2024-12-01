@@ -5,17 +5,19 @@ import { useCallback, useState, type ChangeEvent } from 'react';
 import { Title } from '@/shared/ui/Typography';
 import { Form, FormRow } from '@/shared/ui/Form';
 import { Button } from '@/shared/ui/Button';
-import { InputWithLabel } from '@/shared/ui/Input';
+import { Input } from '@/shared/ui/Input';
+import { TAB, FIELD_NAMES, DEFAULT_FORM_STATE } from '@/shared/model/auth/constans';
+import { validateAuthForm } from '@/shared/model/auth/validation';
+import type { TabType, FORM_STATE, FORM_ERROR } from '@/shared/model/auth/types';
 
-import { TAB, FIELD_NAMES, DEFAULT_FORM_STATE } from './model/constans';
 import { ToggleFormType } from './ui/ToggleFormType';
-import type { TabType, FORM_STATE } from './model/types';
 import { CONTENT } from './model/content';
 
 
 export const AuthPage = () => {
   const [activeTab, setActiveTab] = useState<TabType>(TAB.LOGIN)
   const [formState, setFormState ] = useState<FORM_STATE>(DEFAULT_FORM_STATE)
+  const [errors, setErrors] = useState<FORM_ERROR>({})
 
   const toggleForm = useCallback(() => {
     setActiveTab(prev => {
@@ -23,6 +25,7 @@ export const AuthPage = () => {
       return TAB.REGISTER;
     })
     setFormState({...DEFAULT_FORM_STATE})
+    setErrors({})
   }, [])
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +33,16 @@ export const AuthPage = () => {
     setFormState(prev => ({ ...prev, [name]: value }))
   }, [])
 
-  const handleSubmit = useCallback(() => {}, [])
+  const handleSubmit = useCallback(() => {
+    setErrors(() => ({}))
+
+    const error = validateAuthForm(formState, activeTab)
+    if (error) {
+      setErrors(() => ({...error}))
+      return;
+    }
+
+  }, [activeTab])
 
   return (
     <>
@@ -44,29 +56,32 @@ export const AuthPage = () => {
       <Form onSubmit={handleSubmit} className="mt-6">
         {activeTab === TAB.REGISTER && (
           <FormRow>
-            <InputWithLabel
+            <Input
               name={FIELD_NAMES.FULL_NAME}
               label={CONTENT.LABELS.FULL_NAME}
               value={formState[FIELD_NAMES.FULL_NAME]}
               onChange={handleChange}
+              errors={errors[FIELD_NAMES.FULL_NAME]}
             />
           </FormRow>
         )}
         <FormRow>
-          <InputWithLabel
+          <Input
             name={FIELD_NAMES.EMAIL}
             label={CONTENT.LABELS.EMAIL}
             value={formState[FIELD_NAMES.EMAIL]}
             onChange={handleChange}
+            errors={errors[FIELD_NAMES.EMAIL]}
             type='email'
           />
         </FormRow>
         <FormRow>
-          <InputWithLabel
+          <Input
             name={FIELD_NAMES.PASSWORD}
             label={CONTENT.LABELS.PASSWORD}
             value={formState[FIELD_NAMES.PASSWORD]}
             onChange={handleChange}
+            errors={errors[FIELD_NAMES.PASSWORD]}
             type='password'
           />
         </FormRow>
