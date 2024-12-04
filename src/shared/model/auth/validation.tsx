@@ -7,7 +7,9 @@ import { MESSAGE } from './content';
 export const validateAuthForm = (data: FORM_STATE, formType: TabType): FORM_ERROR | null => {
   let authSchema = z.object({
     [FIELD_NAMES.EMAIL]: z.string().email(),
-    [FIELD_NAMES.PASSWORD]: z.string().min(3, MESSAGE.VALIDATION.PASSWORD_MIN_LENGTH),
+    [FIELD_NAMES.PASSWORD]: z.string()
+      .min(6, MESSAGE.VALIDATION.PASSWORD_MIN_LENGTH)
+      .regex(/(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))/, MESSAGE.VALIDATION.PASSWORD_SYMBOL)
   })
 
   if(formType === TAB.REGISTER) {

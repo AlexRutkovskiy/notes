@@ -4,4 +4,4 @@ export type TabType = TAB.LOGIN | TAB.REGISTER;
 
 export type FORM_STATE = typeof DEFAULT_FORM_STATE
 
-export type FORM_ERROR = Record<Partial<keyof FORM_STATE>, string[]>
+export type FORM_ERROR = Record<Partial<keyof FORM_STATE>, string[] | null>

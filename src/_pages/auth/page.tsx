@@ -1,18 +1,21 @@
 'use client';
 
-import { useCallback, useState, type ChangeEvent } from 'react';
+import { type ChangeEvent, useCallback, useState } from 'react';
+import toast from "react-hot-toast";
 
 import { Title } from '@/shared/ui/Typography';
 import { Form, FormRow } from '@/shared/ui/Form';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
-import { TAB, FIELD_NAMES, DEFAULT_FORM_STATE } from '@/shared/model/auth/constans';
+import { DEFAULT_FORM_STATE, FIELD_NAMES, TAB } from '@/shared/model/auth/constans';
 import { validateAuthForm } from '@/shared/model/auth/validation';
-import type { TabType, FORM_STATE, FORM_ERROR } from '@/shared/model/auth/types';
+import { fetchApi } from '@/shared/api';
+import { API_URLS } from '@/_pages/auth/model/constans';
+import { getErrorMessage } from '@/shared/utils/helpers';
+import type { FORM_ERROR, FORM_STATE, TabType } from '@/shared/model/auth/types';
 
 import { ToggleFormType } from './ui/ToggleFormType';
 import { CONTENT } from './model/content';
-
 
 export const AuthPage = () => {
   const [activeTab, setActiveTab] = useState<TabType>(TAB.LOGIN)
@@ -34,11 +37,13 @@ export const AuthPage = () => {
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormState(prev => ({ ...prev, [name]: value }))
-  }, [])
 
-  const handleSubmit = useCallback(() => {
-    setErrors(() => ({}))
+    if(errors && errors[name]) {
+      setErrors(prev => ({...prev, [name]: null}))
+    }
+  }, [errors])
 
+  const handleSubmit = useCallback(async () => {
     const error = validateAuthForm(formState, activeTab)
     if (error) {
       setErrors(() => ({...error}))
@@ -46,7 +51,27 @@ export const AuthPage = () => {
     }
 
     setIsLoading(true)
-  }, [activeTab])
+
+    try {
+      if (activeTab === TAB.REGISTER) {
+        await fetchApi(API_URLS.REGISTER, {
+          method: 'POST',
+          body: JSON.stringify(formState)
+        });
+        setFormState(() => ({...DEFAULT_FORM_STATE}))
+        toast.success(CONTENT.NOTIFICATION.CREATED_USER)
+        return;
+      }
+
+      if (activeTab === TAB.LOGIN) {
+
+      }
+    } catch (e) {
+      toast.error(getErrorMessage(e))
+    } finally {
+      setIsLoading(false)
+    }
+  }, [activeTab, formState])
 
   return (
     <>

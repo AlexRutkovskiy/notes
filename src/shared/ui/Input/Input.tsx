@@ -4,7 +4,7 @@ import { BaseInput, type InputProps } from './BaseInput';
 
 type InputWithLabelProps = InputProps & {
   label: string,
-  errors?: undefined | string[];
+  errors?: null | undefined | string[];
 }
 
 export const Input = ({

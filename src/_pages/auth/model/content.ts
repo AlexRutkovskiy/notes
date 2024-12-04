@@ -18,5 +18,8 @@ export const CONTENT = {
     EMAIL: 'Email',
     PASSWORD: 'Password',
     SUBMIT: 'Submit'
+  },
+  NOTIFICATION: {
+    CREATED_USER: "Create Account"
   }
 }
