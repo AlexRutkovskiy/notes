@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-import { ToasterContext } from '@/shared/context'
+import {
+  ToasterContext,
+  AuthContext,
+  LoadingContext
+} from '@/shared/context'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,10 +23,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} bg-gray-200`}
+        className={`${inter.className} bg-gray-200 relative`}
       >
-        <ToasterContext />
-        {children}
+        <AuthContext>
+          <LoadingContext>
+            <ToasterContext />
+            {children}
+          </LoadingContext>
+        </AuthContext>
       </body>
     </html>
   );

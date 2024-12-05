@@ -1,10 +1,10 @@
 import { z, ZodIssue } from 'zod';
 
-import { FORM_ERROR, FORM_STATE, TabType } from './types';
-import { TAB, FIELD_NAMES } from './constans';
+import { FORM_ERROR, FORM_STATE } from './types';
+import { FIELD_NAMES } from './constans';
 import { MESSAGE } from './content';
 
-export const validateAuthForm = (data: FORM_STATE, formType: TabType): FORM_ERROR | null => {
+export const validateAuthForm = (data: FORM_STATE, isRegister: boolean): FORM_ERROR | null => {
   let authSchema = z.object({
     [FIELD_NAMES.EMAIL]: z.string().email(),
     [FIELD_NAMES.PASSWORD]: z.string()
@@ -12,7 +12,7 @@ export const validateAuthForm = (data: FORM_STATE, formType: TabType): FORM_ERRO
       .regex(/(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))/, MESSAGE.VALIDATION.PASSWORD_SYMBOL)
   })
 
-  if(formType === TAB.REGISTER) {
+  if(isRegister) {
     authSchema = authSchema.extend({
       [FIELD_NAMES.FULL_NAME]: z.string().min(2, MESSAGE.VALIDATION.FULL_NAME_MIN_LENGTH),
     })
