@@ -6,6 +6,9 @@ export const ERROR = {
     INTERNAL_ERROR: "Internal Server Error",
     GENERAL_ERROR: "Something went wrong",
     INVALID_CREDENTIALS: "Invalid credentials"
+  },
+  CUSTOM: {
+    CAN_NOT_GET_USER: "Canno't get user"
   }
 }
 

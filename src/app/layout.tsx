@@ -5,7 +5,8 @@ import "./globals.css";
 import {
   ToasterContext,
   AuthContext,
-  LoadingContext
+  LoadingContext,
+  StoreContext
 } from '@/shared/context'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -26,10 +27,12 @@ export default function RootLayout({
         className={`${inter.className} bg-gray-200 relative`}
       >
         <AuthContext>
-          <LoadingContext>
-            <ToasterContext />
-            {children}
-          </LoadingContext>
+          <StoreContext>
+            <LoadingContext>
+              <ToasterContext />
+              {children}
+            </LoadingContext>
+          </StoreContext>
         </AuthContext>
       </body>
     </html>
