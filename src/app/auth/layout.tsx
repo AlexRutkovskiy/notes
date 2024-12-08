@@ -3,7 +3,8 @@
 import React, { useLayoutEffect } from 'react';
 import { useRouter } from "next/navigation";
 
-import { useIsAuth } from '@/shared/hooks'
+import { useIsAuth } from '@/shared/hooks';
+import { CircleLoading } from '@/shared/ui/CircleLoading';
 
 interface AuthLayoutProps {
   children: Readonly<React.ReactNode>
@@ -19,7 +20,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
     }
   }, [isAuth]);
 
-  if (isAuth) return null;
+  if (isAuth) return <CircleLoading />;
 
   return (
     <div className="w-full h-full flex items-center justify-center p-10">
