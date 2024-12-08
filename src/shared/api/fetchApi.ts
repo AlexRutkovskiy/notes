@@ -6,12 +6,12 @@ const DEFAULT_OPTIONS = {
   }
 }
 
-export const fetchApi = async (url: string, options: RequestInit = {}) => {
+export async function fetchApi<T>(url: string, options: RequestInit = {}): Promise<T> {
   return fetch(url, merge(DEFAULT_OPTIONS, options))
     .then(response => {
       if (!response.ok) {
         throw new Error(response.statusText);
       }
-      return response.json()
+      return response.json() as T;
     });
 }
