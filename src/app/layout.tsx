@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} bg-gray-200 relative`}
+        className={`${inter.className} bg-gray-200 text-gray-700 relative`}
       >
         <AuthContext>
           <StoreContext>
