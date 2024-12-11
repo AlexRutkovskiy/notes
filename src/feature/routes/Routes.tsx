@@ -14,7 +14,7 @@ export const Routes = () => {
     <nav>
       {routes.map((route) => {
         const isActive = params === route.path;
-        const Component = route.icon;
+        const ComponentIcon = route.icon;
 
         return (
           <div
@@ -26,7 +26,7 @@ export const Routes = () => {
               )
             }
           >
-            <Component className="block w-6 h-6 mr-2" />
+            <ComponentIcon className="block w-6 h-6 mr-2" />
             <Link href={route.path}>
               <Content>{route.label}</Content>
             </Link>
