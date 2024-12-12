@@ -17,3 +17,7 @@ export const ERROR_CODE = {
     P2002: 'P2002'
   }
 }
+
+export const AVAILABLE_URL_NOT_ACTIVE_USER  = [
+  "/settings"
+];

@@ -1,4 +1,4 @@
-import { ERROR } from '@/shared/utils/consts';
+import { AVAILABLE_URL_NOT_ACTIVE_USER, ERROR } from '@/shared/utils/consts';
 
 export const getErrorMessage = (error: unknown): string => {
   if (error instanceof Error) {
@@ -10,4 +10,10 @@ export const getErrorMessage = (error: unknown): string => {
   }
 
   return ERROR.SERVER.GENERAL_ERROR
+}
+
+export const checkIsAvailablePath = (path: string, isActiveUser: boolean) => {
+  if (isActiveUser) return true;
+
+  return AVAILABLE_URL_NOT_ACTIVE_USER.includes(path);
 }
