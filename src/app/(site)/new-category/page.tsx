@@ -1,7 +1,8 @@
 'use client'
 
-import { NewCategoryPage } from '@/_pages/newCategory'
+import { NewCategoryPage } from '@/_pages/newCategory';
+import { withInactiveUser } from '@/shared/HOC/withInactiveUser';
 
 export default function Home()  {
-  return <NewCategoryPage />
+  return withInactiveUser(NewCategoryPage);
 }
