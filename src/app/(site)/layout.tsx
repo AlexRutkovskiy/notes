@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react';
-import { usePathname } from 'next/navigation';
 
 import { Header } from '@/widget/header';
 import { AsideMenu } from '@/widget/asideMenu';
@@ -18,7 +17,6 @@ interface AuthLayoutProps {
 export default function SiteLayout({ children }: AuthLayoutProps) {
   const isAuth = useIsAuth();
   const user = useAppState(getUser);
-  const params = usePathname();
 
   if (!isAuth) return <CircleLoading />;
 

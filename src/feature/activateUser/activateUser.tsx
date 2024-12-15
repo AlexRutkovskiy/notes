@@ -14,7 +14,7 @@ export const ActivateUser = () => {
       const newDate = Date.now() + ( 3600 * 1000 * 24);
       return (
         <Button onClick={() => updateStorageValue(newDate)}>
-          <Content tag="span">{TRANSLATE.ACTIVATE}</Content>
+          <Content tag="span">{TRANSLATE.SETTINGS_PAGE.ACTIVATE}</Content>
         </Button>
       )
     }
@@ -22,8 +22,8 @@ export const ActivateUser = () => {
     if (date < storageValue) {
       return (
         <>
-          <Content>{TRANSLATE.DESCRIPTION.FIRST}</Content>
-          <Content>{TRANSLATE.DESCRIPTION.SECOND}</Content>
+          <Content>{TRANSLATE.SETTINGS_PAGE.DESCRIPTION.FIRST}</Content>
+          <Content>{TRANSLATE.SETTINGS_PAGE.DESCRIPTION.SECOND}</Content>
         </>
       )
     }

@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 
 type Tag = 'p' | 'span'
 
@@ -15,7 +16,7 @@ export const Content = ({
   const Component = tag
   return (
     <Component
-      className={`m-0 font-medium text-base ${className}`}
+      className={clsx(`m-0 font-medium text-base`, className)}
     >
       {children}
     </Component>
