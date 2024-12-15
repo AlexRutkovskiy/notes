@@ -12,7 +12,7 @@ export const withInactiveUser = (Component: React.ComponentType) => {
   if (!user.isActive) {
     return (
       <div className="flex flex-col items-center justify-center w-full h-full">
-        <HiOutlineBan className="block w-12 h-12 mb-10" />
+        <HiOutlineBan className="block w-12 h-12 mb-10 text-red-500" />
         <Link href="/settings" className="hover:text-blue-500">
           <Content tag="span">Activate user</Content>
         </Link>

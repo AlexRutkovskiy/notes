@@ -21,3 +21,11 @@ export const ERROR_CODE = {
 export const AVAILABLE_URL_NOT_ACTIVE_USER  = [
   "/settings"
 ];
+
+export const TRANSLATE = {
+  ACTIVATE: "Activate",
+  DESCRIPTION: {
+    FIRST: "An activation email has been sent to your email.",
+    SECOND: "You can request a repeat activation email after 24 hours."
+  }
+}
