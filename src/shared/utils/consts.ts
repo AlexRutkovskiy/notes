@@ -8,7 +8,11 @@ export const ERROR = {
     INVALID_CREDENTIALS: "Invalid credentials"
   },
   CUSTOM: {
-    CAN_NOT_GET_USER: "Canno't get user"
+    CAN_NOT_GET_USER: "Canno't get user",
+    CAN_NOT_SEND_EMAIL: "Can't send email",
+  },
+  CLIENT: {
+    GENERAL_ERROR: "Something went wrong",
   }
 }
 

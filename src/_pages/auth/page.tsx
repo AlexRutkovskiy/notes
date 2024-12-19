@@ -32,6 +32,7 @@ export const AuthPage = () => {
       <AuthForm
         isRegister={activeTab === TAB.REGISTER}
         onLoading={setIsLoading}
+        onCreateUserAction={() => setActiveTab(TAB.LOGIN)}
       >
         <ToggleFormType
           activeTab={activeTab}

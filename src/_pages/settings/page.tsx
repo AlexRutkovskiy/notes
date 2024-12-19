@@ -27,7 +27,13 @@ export const SettingsPage = () => {
           <FieldItem label="Created" value={new Date(user.createdAt).toLocaleDateString()} />
           <FieldItem label="Updated" value={new Date(user.updatedAt).toLocaleDateString()} />
           <div className="mt-10">
-            <ActivateUser />
+            <ActivateUser
+              data={{
+                name: user.fullName,
+                email: user.email,
+                slug: user.activeSlug
+              }}
+            />
           </div>
         </div>
       </div>

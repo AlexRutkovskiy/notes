@@ -1,30 +1,32 @@
 'use client'
 
-import { type ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { type ChangeEvent, type FormEvent, useCallback, useEffect, useState } from 'react';
 
 import toast from 'react-hot-toast';
 import { signIn } from 'next-auth/react';
 
+import { CONTENT } from '@/_pages/auth/model/content';
+
 import { Form, FormRow } from '@/shared/ui/Form';
 import { Input } from '@/shared/ui/Input';
-import { DEFAULT_FORM_STATE, FIELD_NAMES } from '@/shared/model/auth/constans';
-import { CONTENT } from '@/_pages/auth/model/content';
 import { Button } from '@/shared/ui/Button';
+import { DEFAULT_FORM_STATE, FIELD_NAMES } from '@/shared/model/auth/constans';
 import type { FORM_ERROR, FORM_STATE } from '@/shared/model/auth/types';
 import { validateAuthForm } from '@/shared/model/auth/validation';
-import { fetchApi } from '@/shared/api';
-import { API_URLS } from '@/_pages/auth/model/constans';
 import { getErrorMessage } from '@/shared/utils/helpers';
+import { userRegister } from '../api/register';
 
 interface IAuthForm {
   isRegister?: boolean;
   onLoading?: (isLoading: boolean) => void;
+  onCreateUserAction?: () => void;
   children?: React.ReactNode;
 }
 
 export const AuthForm = ({
   isRegister = false,
   onLoading,
+  onCreateUserAction,
   children,
 }: IAuthForm) => {
   const [formState, setFormState ] = useState<FORM_STATE>(DEFAULT_FORM_STATE)
@@ -49,7 +51,9 @@ export const AuthForm = ({
     }
   }, [errors])
 
-  const handleSubmit = useCallback(async () => {
+  const handleSubmit = useCallback(async (e: FormEvent) => {
+    e.preventDefault()
+
     const error = validateAuthForm(formState, isRegister)
     if (error) {
       setErrors(() => ({...error}))
@@ -60,13 +64,11 @@ export const AuthForm = ({
       setIsLoading(true)
 
       if (isRegister) {
-        await fetchApi(API_URLS.REGISTER, {
-          method: 'POST',
-          body: JSON.stringify(formState)
-        });
+        await userRegister(formState)
 
         setFormState(() => ({...DEFAULT_FORM_STATE}))
         toast.success(CONTENT.NOTIFICATION.CREATED_USER)
+        onCreateUserAction && onCreateUserAction()
       } else {
         await signIn('credentials', {...formState, redirect: false})
       }

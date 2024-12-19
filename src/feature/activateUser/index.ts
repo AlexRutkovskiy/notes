@@ -1,3 +1,3 @@
-import { ActivateUser } from './activateUser';
+import { ActivateUser } from './ui/activateUser';
 
 export { ActivateUser }
