@@ -6,6 +6,7 @@ export default withAuth({
   },
 });
 
+// @TODO fix regexp
 export const config = {
-  matcher: ['/:id*'],
+  matcher: ['/(!api.)*'],
 };

@@ -2,6 +2,7 @@
 
 import { useMemo, useLayoutEffect } from 'react';
 import { useSession } from 'next-auth/react';
+import { usePathname } from 'next/navigation'
 
 import { CircleLoading } from '@/shared/ui/CircleLoading';
 import { useAppState, useAppDispatch } from '@/shared/hooks';
@@ -18,6 +19,7 @@ export const LoadingContext = ({
   const session = useSession()
   const { user } = useAppState(getUserData)
   const dispatch = useAppDispatch()
+  const pathname = usePathname()
 
   useLayoutEffect(() => {
     if (session.status === 'authenticated' && !user) {
@@ -26,7 +28,7 @@ export const LoadingContext = ({
   }, [session, user]);
 
   const isLoading = useMemo(() => {
-    return session.status === 'authenticated' && !user;
+    return session.status === 'authenticated' && !user && !pathname.includes('activate');
   }, [session.status, user])
 
   return isLoading ? <CircleLoading /> : children

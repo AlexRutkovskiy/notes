@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useSession } from 'next-auth/react';
 
-import { useAppState } from '@/shared/hooks';
+import { useAppState } from '@/shared/hooks/index';
 import { getUser } from '@/shared/store';
 
 export const useIsAuth = () => {
