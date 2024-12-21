@@ -26,15 +26,18 @@ export const SettingsPage = () => {
           <FieldItem label="Active" value={user.isActive ? "Active" : "Not Active"} />
           <FieldItem label="Created" value={new Date(user.createdAt).toLocaleDateString()} />
           <FieldItem label="Updated" value={new Date(user.updatedAt).toLocaleDateString()} />
-          <div className="mt-10">
-            <ActivateUser
-              data={{
-                name: user.fullName,
-                email: user.email,
-                slug: user.activeSlug
-              }}
-            />
-          </div>
+          
+          {!user.isActive && (
+            <div className="mt-10">
+              <ActivateUser
+                data={{
+                  name: user.fullName,
+                  email: user.email,
+                  slug: user.activeSlug
+                }}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>

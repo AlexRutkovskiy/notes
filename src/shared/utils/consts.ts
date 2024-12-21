@@ -10,6 +10,8 @@ export const ERROR = {
   CUSTOM: {
     CAN_NOT_GET_USER: "Canno't get user",
     CAN_NOT_SEND_EMAIL: "Can't send email",
+    CAN_NOT_READ_SLUG: "Can't read slug from url",
+    CAN_NOT_GET_USER_BY_SLUG: "Can't get user by slug"
   },
   CLIENT: {
     GENERAL_ERROR: "Something went wrong",

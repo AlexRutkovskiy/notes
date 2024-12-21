@@ -6,12 +6,10 @@ import Link from 'next/link';
 
 import { Content, Title } from '@/shared/ui/Typography';
 import { TRANSLATE } from '@/shared/utils/consts';
-import { useIsAuth } from '@/shared/hooks';
-import { CircleLoading } from '@/shared/ui/CircleLoading';
+import { activateUserAccount } from './api/activateUser';
 
 export const ActivateAccount = () => {
   const { id } = useParams<{id: string}>();
-  const isAuth = useIsAuth();
 
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -19,8 +17,9 @@ export const ActivateAccount = () => {
   
   useEffect(() => {
     const activateUser = async () => {
+      setIsLoading(true);
       try {
-        setIsLoading(true);
+        await activateUserAccount(id)  
         setIsSuccess(true);
       } catch (e) {
         setIsError(true);
@@ -31,8 +30,6 @@ export const ActivateAccount = () => {
     
     activateUser()
   }, [])
-
-  if (!isAuth) return <CircleLoading />;
 
   return (
     <div className="w-full h-full flex items-center justify-center">
