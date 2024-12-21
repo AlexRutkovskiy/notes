@@ -7,6 +7,7 @@ import { Title } from '@/shared/ui/Typography';
 import { useAppState } from '@/shared/hooks';
 import { getUser } from '@/shared/store';
 import type { IUser } from '@/shared/model/user/types';
+import { TRANSLATE } from '@/shared/utils/consts';
 
 export const SettingsPage = () => {
   const user = useAppState(getUser) as IUser;
@@ -14,7 +15,7 @@ export const SettingsPage = () => {
   return (
     <div>
       <div className="mb-10">
-        <Title>Settings</Title>
+        <Title>{TRANSLATE.SETTINGS_PAGE.TITLE}</Title>
       </div>
       <div className="flex gap-10">
         <div className="w-[30%] max-w-[350px] min-w-[250px] relative aspect-square">

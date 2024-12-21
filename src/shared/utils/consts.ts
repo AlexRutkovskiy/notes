@@ -28,6 +28,10 @@ export const AVAILABLE_URL_NOT_ACTIVE_USER  = [
   "/settings"
 ];
 
+export const LINK_TO = {
+  NEW_CATEGORY: "/category/new"
+}
+
 export const TRANSLATE = {
   SETTINGS_PAGE: {
     ACTIVATE: "Activate",
@@ -35,11 +39,22 @@ export const TRANSLATE = {
       FIRST: "An activation email has been sent to your email.",
       SECOND: "You can request a repeat activation email after 24 hours."
     },
+    TITLE: "Settings"
   },
   ACTIVATE_ACCOUNT: {
     TITLE: "Activate account",
     DESCRIPTION: "Checking user activation link",
     ERROR: "User activation error",
     GO_HOME: "Go to home",
+  },
+  CATEGORIES_PAGE: {
+    TITLE: "Categories",
+    CREATE_CATEGORY: "Create new category"
+  },
+  NEW_CATEGORY_PAGE: {
+    TITLE: "Create new category"
+  },
+  UTILS: {
+    BACK: "Back"
   }
 }

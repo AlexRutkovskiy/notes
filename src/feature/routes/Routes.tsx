@@ -19,7 +19,7 @@ export const Routes = ({ user }: RoutesProps) => {
   return (
     <nav>
       {routes.map((route) => {
-        const isActive = params === route.path;
+        const isActive = params === route.path || (params.includes(route.path) && route.path !== "/");
         const ComponentIcon = route.icon;
 
         return (
