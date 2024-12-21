@@ -52,7 +52,7 @@ export const TRANSLATE = {
     CREATE_CATEGORY: "Create new category"
   },
   NEW_CATEGORY_PAGE: {
-    TITLE: "Create new category"
+    TITLE: "New category"
   },
   UTILS: {
     BACK: "Back"

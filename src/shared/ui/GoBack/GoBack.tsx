@@ -11,7 +11,7 @@ export const GoBack = () => {
     return (
         <div
             onClick={() => router.back()} 
-            className="flex items-center gap-3 cursor-pointer"
+            className="flex items-center gap-3 cursor-pointer hover:text-blue-500"
         >
             <IoMdArrowRoundBack />            
             <div>
