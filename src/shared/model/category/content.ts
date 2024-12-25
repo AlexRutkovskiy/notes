@@ -3,5 +3,8 @@ export const CONTENT = {
         TITLE: "Title",
         DESCRIPTION: "Description",
         SUBMIT: "Create category"
+    },
+    NOTIFICATION: {
+        CREATE_CATEGORY: "Category was created"
     }
 }

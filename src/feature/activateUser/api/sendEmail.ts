@@ -1,5 +1,5 @@
 import { fetchApi } from '@/shared/api';
-import { API_URLS } from '@/_pages/auth/model/constans';
+import { API_URLS } from '@/shared/utils/consts';
 import { EmailProps } from '@/feature/activateUser/model/types';
 
 export const sendEmail = async (data: EmailProps) => {

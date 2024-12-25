@@ -1,4 +1,4 @@
-import { API_URLS } from "@/_pages/auth/model/constans"
+import { API_URLS } from "@/shared/utils/consts"
 import { fetchApi } from "@/shared/api"
 
 export const activateUserAccount = async (id: string) => {
