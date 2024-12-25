@@ -6,17 +6,17 @@ import toast from 'react-hot-toast';
 import { createNewCategory } from "@/feature/newCategory/api/createCategory"
 
 import { DEFAULT_FORM_STATE, FIELD_NAMES } from "@/shared/model/category/constans"
-import { CONTENT } from "@/shared/model/category/content"
-import { FORM_ERROR, FORM_STATE, ICategory } from "@/shared/model/category/types"
+import { CONTENT } from "@/_pages/newCategory/model/content"
+import { FORM_ERROR, FORM_STATE } from "@/shared/model/category/types"
 import { Button } from "@/shared/ui/Button"
 import { Form, FormRow } from "@/shared/ui/Form"
 import { Input } from "@/shared/ui/Input"
 import { getErrorMessage } from '@/shared/utils/helpers';
-
 import { useAppState, useAppDispatch } from '@/shared/hooks';
 import { addCategory } from '@/shared/store';
 import { getUser } from '@/shared/store';
 import { NewCategory } from "@/feature/newCategory/model/types";
+import { validateAuthForm } from "@/shared/model/category/validation";
 
 export const CategoryForm = () => {
     const [formState, setFormState] = useState<FORM_STATE>(DEFAULT_FORM_STATE)
@@ -36,6 +36,14 @@ export const CategoryForm = () => {
     }, [errors])
 
     const handleSubmit = useCallback(async (e: FormEvent) => {
+         e.preventDefault()
+        
+        const error = validateAuthForm(formState)
+        if (error) {
+            setErrors(() => ({...error}))
+            return;
+        }
+
         try {
             setLoading(true)
             const category = await createNewCategory({

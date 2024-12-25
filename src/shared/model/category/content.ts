@@ -1,10 +1,5 @@
-export const CONTENT = {
-    LABELS: {
-        TITLE: "Title",
-        DESCRIPTION: "Description",
-        SUBMIT: "Create category"
-    },
-    NOTIFICATION: {
-        CREATE_CATEGORY: "Category was created"
-    }
+export const MESSAGE = {
+  VALIDATION: {
+    TITLE_REQUIRED: 'Title field is required',
+  }
 }
