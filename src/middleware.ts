@@ -6,7 +6,8 @@ export default withAuth({
   },
 });
 
-// @TODO fix regexp
 export const config = {
-  matcher: ['/(!api.)*'],
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
+  ],
 };

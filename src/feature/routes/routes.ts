@@ -14,8 +14,8 @@ export const routes = [
   },
   {
     id: 'newCategory',
-    label: 'New Category',
-    path: '/new-category',
+    label: 'Category',
+    path: '/category',
     icon: HiOutlineDocumentAdd
   },
   {
